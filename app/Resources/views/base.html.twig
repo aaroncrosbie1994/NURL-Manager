@@ -3,9 +3,19 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <style>
+            @import '/css/styles.css';
+        </style>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+    <header>
+        <nav>
+            <ul>
+                <a href="#">Home</a><a href="#">NURL's</a><a href="#">Register</a><a href="#">Login</a>
+            </ul>
+        </nav>
+    </header>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}

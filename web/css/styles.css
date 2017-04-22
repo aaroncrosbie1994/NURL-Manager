@@ -1,0 +1,32 @@
+*{
+    font-family: 'Lato', sans-serif;
+    color: #595959;
+}
+
+body {
+    min-width: 45%;
+    max-width: 51%;
+    min-height: 360px;
+    max-height: 370px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2%;
+    overflow-y: scroll;
+    background: #d89684;
+}
+
+h1 {
+    text-align: center;
+}
+
+nav{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    padding-left:1em;
+    padding-top:.5em;
+    padding-bottom:.5em;
+}
