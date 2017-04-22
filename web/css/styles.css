@@ -24,9 +24,23 @@ nav{
     text-align: center;
 }
 
-a{
+nav a{
+    border-radius: 10px;
     text-decoration: none;
+    margin-left: .5em;
+    margin-right: .5em;
     padding-left:1em;
+    padding-right:1em;
     padding-top:.5em;
     padding-bottom:.5em;
+    transition: .5s;
+}
+
+nav a:hover{
+    background: #d86259;
+    transition: .5s;
+}
+
+p{
+    text-align: center;
 }
