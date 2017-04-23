@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -85,8 +86,6 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid(null, true));
     }
 
     // other properties and methods
@@ -133,8 +132,6 @@ class User implements UserInterface, \Serializable
 
     public function getSalt()
     {
-        // The bcrypt algorithm doesn't require a separate salt.
-        // You *may* need a real salt if you choose a different encoder.
         return null;
     }
 
@@ -145,8 +142,6 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
-            // see section on salt below
-            // $this->salt,
         ));
     }
 
@@ -184,6 +179,8 @@ class User implements UserInterface, \Serializable
     {
         $roles = $this->roles;
 
+        $roles[] = 'ROLE_USER';
+
         return array_unique($roles);
     }
 
@@ -197,6 +194,7 @@ class User implements UserInterface, \Serializable
     public function setRoles($roles)
     {
         $this->roles = $roles;
+
         return $this;
     }
 
@@ -245,7 +243,11 @@ class User implements UserInterface, \Serializable
         return $this->isActive;
     }
 
-
+    public function load(ObjectManager $manager)
+    {
+        $userAdmin = $this->createActiveUser('admin', 'admin@admin.com', 'admin', ['ROLE_ADMIN']);
+        $manager->persist($userAdmin);
+    }
 
 
 
