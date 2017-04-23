@@ -65,11 +65,9 @@ class TagController extends Controller
      */
     public function showAction(Tag $tag)
     {
-        $deleteForm = $this->createDeleteForm($tag);
 
         return $this->render('tag/show.html.twig', array(
             'tag' => $tag,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -132,5 +130,19 @@ class TagController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/upvote", name="tag_upvote")
+     * @Method({"GET", "POST"})
+     */
+    public function upvoteAction(Tag $tag){
+        $tag->setUpvote($tag->getUpvote()+1);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($tag);
+        $em->flush();
+
+        return $this->redirectToRoute('tag_index');
     }
 }

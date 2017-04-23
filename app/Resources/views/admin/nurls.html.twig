@@ -5,6 +5,19 @@
 {% block body %}
     <h1>welcome to ADMIN home page</h1>
     <div class="adminContainer">
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Url</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Upvote</th>
+                <th>Downvote</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
             {% for nurl in nurls %}
                 <tr>
                     <td><a href="{{ path('nurl_show', { 'id': nurl.id }) }}">{{ nurl.id }}</a></td>
@@ -24,6 +37,8 @@
                         </ul>
                     </td>
                 </tr>
-            {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
     </div>
 {% endblock %}

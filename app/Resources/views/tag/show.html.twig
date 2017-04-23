@@ -20,6 +20,9 @@
             <tr>
                 <th>Upvote</th>
                 <td>{{ tag.upvote }}</td>
+                <td>
+                    <a href="{{ path('tag_upvote', { 'tag':tag })}}"><button>Submit</button></a>
+                </td>
             </tr>
             <tr>
                 <th>Downvote</th>
