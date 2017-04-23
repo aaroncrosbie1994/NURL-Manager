@@ -136,4 +136,34 @@ class NurlController extends Controller
         ;
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/upvote/{id}", name="nurl_upvote")
+     * @Method({"GET", "POST"})
+     */
+    public function upvoteAction(Nurl $nurl)
+    {
+        $nurl->setUpvote($nurl->getUpvote()+1);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($nurl);
+        $em->flush();
+
+        return $this->redirectToRoute('nurl_index');
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/downvote/{id}", name="nurl_downvote")
+     * @Method({"GET", "POST"})
+     */
+    public function downvoteAction(Nurl $nurl)
+    {
+        $nurl->setDownvote($nurl->getDownvote()+1);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($nurl);
+        $em->flush();
+
+        return $this->redirectToRoute('nurl_index');
+    }
+
 }

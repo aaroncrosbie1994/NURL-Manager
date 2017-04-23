@@ -134,11 +134,27 @@ class TagController extends Controller
 
     /**
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @Route("/upvote", name="tag_upvote")
+     * @Route("/upvote/{id}", name="tag_upvote")
      * @Method({"GET", "POST"})
      */
-    public function upvoteAction(Tag $tag){
+    public function upvoteAction(Tag $tag)
+    {
         $tag->setUpvote($tag->getUpvote()+1);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($tag);
+        $em->flush();
+
+        return $this->redirectToRoute('tag_index');
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/downvote/{id}", name="tag_downvote")
+     * @Method({"GET", "POST"})
+     */
+    public function downvoteAction(Tag $tag)
+    {
+        $tag->setDownvote($tag->getDownvote()+1);
         $em = $this->getDoctrine()->getManager();
         $em->persist($tag);
         $em->flush();

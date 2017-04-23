@@ -24,10 +24,16 @@
             <tr>
                 <th>Upvote</th>
                 <td>{{ nurl.upvote }}</td>
+                <td>
+                    <a href="{{ path('nurl_upvote', { 'id' : nurl.id }) }}"><button>Upvote!</button></a>
+                </td>
             </tr>
             <tr>
                 <th>Downvote</th>
                 <td>{{ nurl.downvote }}</td>
+                <td>
+                    <a href="{{ path('nurl_downvote', { 'id' : nurl.id }) }}"><button>Downvote!</button></a>
+                </td>
             </tr>
         </tbody>
     </table>
