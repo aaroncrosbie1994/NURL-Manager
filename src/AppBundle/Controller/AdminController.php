@@ -23,7 +23,7 @@ class AdminController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER', null, 'Unable to access this page!');
+        //$this->denyAccessUnlessGranted('ROLE_USER', null, 'Unable to access this page!');
 
 
         $templateName = '/admin/index';
