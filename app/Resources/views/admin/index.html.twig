@@ -5,6 +5,13 @@
 {% block body %}
     <h1>welcome to ADMIN home page</h1>
     <div class="adminContainer">
-
+        <ul>
+            <li>
+                <a href="{{ path('admin_nurls') }}">Go to Nurl's</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_tags') }}">Go to Tags</a>
+            </li>
+        </ul>
     </div>
 {% endblock %}
