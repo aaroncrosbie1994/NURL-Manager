@@ -33,12 +33,27 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
+        default:
             anonymous: ~
-            # activate different ways to authenticate
+            form_login:
+                  login_path: login
+                  check_path: login
+            http_basic: ~
+            pattern:    ^/
+            logout:
+                path: /logout
+                target: /
 
-            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        - { path: ˆ/admin, roles: ROLE_ADMIN }
 
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-            #form_login: ~
+
+
+#            logout:
+#                path: /logout
+#                target: /
+#                access_control:
+#                - { path: ˆ/admin, roles: ROLE_ADMIN }
+#                - { path: ˆ/nurl/edit, roles: ROLE_ADMIN }
+#                - { path: ˆ/nurl/new, roles: ROLE_USER }

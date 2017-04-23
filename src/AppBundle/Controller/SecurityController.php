@@ -12,14 +12,16 @@ use AppBundle\Entity\User;
 use AppBundle\Form\LoginForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class SecurityController extends Controller
 {
     /**
      * @Route("/login", name="security_login")
      */
-    public function loginAction()
+    public function loginAction(Request $request)
     {
         $authenticationUtils = $this->get('security.authentication_utils');
 
@@ -29,18 +31,26 @@ class SecurityController extends Controller
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        $form = $this->createForm(LoginForm::class);
+        $session = new Session();
+        $session->set('username', $lastUsername);
+
+        //$form = $this->createForm(LoginForm::class);
 
         return $this->render('security/login.html.twig', array(
-            'form' => $form->createView(),
+            'last_username' => $lastUsername,
             'error'         => $error,
         ));
     }
 
-    public function newAction(Request $request)
-    {
-        $user = new User();
 
-        $form = $this->createFormBuilder($user);
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function canAuthenticate(User $user)
+    {
+        $username = $user->getUsername();
+        $password = $user->getPassword();
+        return ('admin' == $username) && ('admin' == $password);
     }
 }

@@ -16,26 +16,26 @@
             </tr>
         </thead>
         <tbody>
-        {% for nurl in nurls %}
-            <tr>
-                <td><a href="{{ path('nurl_show', { 'id': nurl.id }) }}">{{ nurl.id }}</a></td>
-                <td>{{ nurl.url }}</td>
-                <td>{{ nurl.title }}</td>
-                <td>{{ nurl.content }}</td>
-                <td>{{ nurl.upvote }}</td>
-                <td>{{ nurl.downvote }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('nurl_show', { 'id': nurl.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('nurl_edit', { 'id': nurl.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+        {#{% for nurl in nurls %}#}
+            {#<tr>#}
+                {#<td><a href="{{ path('nurl_show', { 'id': nurl.id }) }}">{{ nurl.id }}</a></td>#}
+                {#<td>{{ nurl.url }}</td>#}
+                {#<td>{{ nurl.title }}</td>#}
+                {#<td>{{ nurl.content }}</td>#}
+                {#<td>{{ nurl.upvote }}</td>#}
+                {#<td>{{ nurl.downvote }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('nurl_show', { 'id': nurl.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('nurl_edit', { 'id': nurl.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
         </tbody>
     </table>
 

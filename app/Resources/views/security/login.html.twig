@@ -4,19 +4,33 @@
 {% block body %}
     <div class="container">
         <div>
-            <div>
-                <h1>Login!</h1>
+            <div id="loginForm">
+                <h1>Please Login</h1>
+
                 {% if error %}
-                    <div>
-                        {{ error.messageKey|trans(error.messageData, 'security') }}
-                    </div>
+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
-                {{ form_start(form) }}
-                    {{ form_row(form.username) }}
-                    {{ form_row(form.plainPassword) }}
-                    <button type="submit">Login</button>
-                {{ form_end(form) }}
+                <form action="{{ path('security_login') }}" method="post">
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+                    <table id="loginTable">
+                        <tr>
+                            <td><label for="username">Username:</label></td>
+                            <td><input type="text" id="username" name="username" value="{{ last_username }}" /></td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Password:</label></td>
+                            <td><input type="password" id="password" name="password" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><button type="submit" id="loginButton">Login</button></td>
+                        </tr>
+                    </table>
+                </form>
             </div>
+            <hr>
             <h2>Not a member?</h2>
             <a href="{{ path('user_registration') }}"><button id="regButton">Register!</button></a>
         </div>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {% set user = app.session.get('user') %}
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         <style>
@@ -10,6 +11,11 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <header>
+        {% if user is null %}
+            <span>You are not logged in</span>
+        {% else %}
+            <span>{{ user.last_username }}</span>
+        {% endif %}
         <nav>
             <ul>
                 <a href="/">Home</a><a href="/nurl">NURL's</a><a href="/tag">Tags</a><a href="/login">Login</a>
