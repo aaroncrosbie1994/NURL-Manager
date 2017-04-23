@@ -47,19 +47,19 @@ class Tag
     /**
      * @var int
      *
-     * @ORM\Column(name="downvote", type="integer")
+     * @ORM\Column(name="downvote", type="integer")#
      */
     private $downvote;
 
-    /**
-     * @var \AppBundle\Entity\Nurl  $nurl
-     *
-     * @ORM\ManyToOne(targetEntity="Nurl", inversedBy="tag")
-     *
-     * @ORM\JoinColumn(name="nurl_id", referencedColumnName="id")
-     *
-     */
-    private $nurl;
+//    /**
+//     * @var \AppBundle\Entity\Nurl  $nurl
+//     *
+//     * @ORM\ManyToOne(targetEntity="Nurl", inversedBy="tag")
+//     *
+//     * @ORM\JoinColumn(name="nurl_id", referencedColumnName="id")
+//     *
+//     */
+//    private $nurl;
 
 
 
@@ -169,27 +169,27 @@ class Tag
         return $this->downvote;
     }
 
-    /**
-     * Set nurl
-     *
-     * @param \AppBundle\Entity\Nurl $nurl
-     *
-     * @return Tag
-     */
-    public function setNurl(\AppBundle\Entity\Nurl $nurl = null)
-    {
-        $this->nurl = $nurl;
-
-        return $this;
-    }
-
-    /**
-     * Get nurl
-     *
-     * @return \AppBundle\Entity\Nurl
-     */
-    public function getNurl()
-    {
-        return $this->nurl;
-    }
+//    /**
+//     * Set nurl
+//     *
+//     * @param \AppBundle\Entity\Nurl $nurl
+//     *
+//     * @return Tag
+//     */
+//    public function setNurl(\AppBundle\Entity\Nurl $nurl = null)
+//    {
+//        $this->nurl = $nurl;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get nurl
+//     *
+//     * @return \AppBundle\Entity\Nurl
+//     */
+//    public function getNurl()
+//    {
+//        return $this->nurl;
+//    }
 }

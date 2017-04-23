@@ -18,30 +18,65 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class SecurityController extends Controller
 {
+//    /**
+//     * @Route("/login", name="security_login")
+//     */
+//    public function loginAction(Request $request)
+//    {
+//        $authenticationUtils = $this->get('security.authentication_utils');
+//
+//        // get the login error if there is one
+//        $error = $authenticationUtils->getLastAuthenticationError();
+//
+//        // last username entered by the user
+//        $lastUsername = $authenticationUtils->getLastUsername();
+//
+//        $session = new Session();
+//        $session->set('username', $lastUsername);
+//
+//        //$form = $this->createForm(LoginForm::class);
+//
+//        return $this->render('security/login.html.twig', array(
+//            'last_username' => $lastUsername,
+//            'error'         => $error,
+//        ));
+//    }
+
     /**
      * @Route("/login", name="security_login")
      */
     public function loginAction(Request $request)
     {
-        $authenticationUtils = $this->get('security.authentication_utils');
+        $user = new User();
+        $session = $this->get('session');
+        //$session->start();
+        $form = $this->createForm('AppBundle\Form\LoginForm');
+        $form->handleRequest($request);
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
+        if($form->isSubmitted() && $form->isValid()){
+            if($this->canAuthenticate($user)){
+                $session->set('user', $user);
 
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+                return $this->redirectToRoute('homepage');
+            }else{
+                $this->addFlash(
+                    'error',
+                    'bad username or password, please try again'
+                );
+                $user->setPassword('');
+                $form = $this->createForm('AppBundle\Form\LoginForm', $user);
+            }
+        }
 
-        $session = new Session();
-        $session->set('username', $lastUsername);
+        $argsArray =[
+            'user' => $user,
+            'form' => $form->createView(),
+        ];
 
-        //$form = $this->createForm(LoginForm::class);
+        $templateName = 'security/login';
 
-        return $this->render('security/login.html.twig', array(
-            'last_username' => $lastUsername,
-            'error'         => $error,
-        ));
+        return $this->render($templateName . '.html.twig', $argsArray);
     }
-
 
     /**
      * @param User $user

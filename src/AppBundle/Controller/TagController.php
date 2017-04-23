@@ -42,11 +42,11 @@ class TagController extends Controller
         $tag = new Tag();
         $form = $this->createForm('AppBundle\Form\TagType', $tag);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($tag);
             $em->flush();
+
 
             return $this->redirectToRoute('tag_show', array('id' => $tag->getId()));
         }

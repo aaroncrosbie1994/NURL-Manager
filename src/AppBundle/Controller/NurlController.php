@@ -115,7 +115,7 @@ class NurlController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('nurl_index');
+        return $this->redirectToRoute('admin_index');
     }
 
     /**
