@@ -66,6 +66,18 @@ class AdminController extends Controller
         return $this->render($templateName . '.html.twig', $tags);
     }
 
+    /**
+     * @Route("/users", name="admin_users")
+     */
+    public function userAction(Request $request)
+    {
+        $users = $this->getUsers();
+
+        $templateName = 'admin/users';
+
+        return $this->render($templateName . '.html.twig', $users);
+    }
+
     private function getNurls()
     {
         $em = $this->getDoctrine()->getManager();
@@ -85,6 +97,17 @@ class AdminController extends Controller
 
         return array(
             'tags' => $tags
+        );
+    }
+
+    private function getUsers()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $users = $em->getRepository('AppBundle:User')->findAll();
+
+        return array(
+            'users' => $users
         );
     }
 }

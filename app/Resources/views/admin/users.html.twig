@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block pageTitle %}admin home page{% endblock %}
+
+{% block body %}
+    <h1>welcome to ADMIN home page</h1>
+    <div class="adminContainer">
+        <ul>
+            <li>
+                <a href="{{ path('admin_index') }}">Back to Admin page</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_nurls') }}">Go to Nurl's list</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_tags') }}">Go to Tags list</a>
+            </li>
+        </ul>
+    </div>
+    <table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+        </table>
+    {% endfor %}
+{% endblock %}
