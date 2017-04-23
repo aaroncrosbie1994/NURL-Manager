@@ -60,23 +60,16 @@ class User implements UserInterface, \Serializable
      */
     private $roles = [];
 
-//    /**
-//     * @var \AppBundle\Entity\Collection  $collection
-//     *
-//     * @ORM\OneToMany(targetEntity="Collection", mappedBy="user")
-//     * @ORM\JoinColumn(name="collection_id", referencedColumnName="id")
-//     *
-//     */
-//    private $collection;
-//
-//    /**
-//     * @var \AppBundle\Entity\Nurl  $nurl
-//     *
-//     * @ORM\OneToMany(targetEntity="Nurl", mappedBy="user")
-//     * @ORM\JoinColumn(name="nurl_id", referencedColumnName="id")
-//     *
-//     */
-//    private $nurl;
+
+
+    /**
+     * @var \AppBundle\Entity\Nurl  $nurl
+     *
+     * @ORM\OneToMany(targetEntity="Nurl", mappedBy="user")
+     * @ORM\JoinColumn(name="nurl_id", referencedColumnName="id")
+     *
+     */
+    private $nurl;
 
 
 
@@ -243,80 +236,38 @@ class User implements UserInterface, \Serializable
         return $this->isActive;
     }
 
-    public function load(ObjectManager $manager)
+
+    /**
+     * Add nurl
+     *
+     * @param \AppBundle\Entity\Nurl $nurl
+     *
+     * @return User
+     */
+    public function addNurl(\AppBundle\Entity\Nurl $nurl)
     {
-        $userAdmin = $this->createActiveUser('admin', 'admin@admin.com', 'admin', ['ROLE_ADMIN']);
-        $manager->persist($userAdmin);
+        $this->nurl[] = $nurl;
+
+        return $this;
     }
 
+    /**
+     * Remove nurl
+     *
+     * @param \AppBundle\Entity\Nurl $nurl
+     */
+    public function removeNurl(\AppBundle\Entity\Nurl $nurl)
+    {
+        $this->nurl->removeElement($nurl);
+    }
 
-
-
-//    /**
-//     * Add collection
-//     *
-//     * @param \AppBundle\Entity\Collection $collection
-//     *
-//     * @return User
-//     */
-//    public function addCollection(\AppBundle\Entity\Collection $collection)
-//    {
-//        $this->collection[] = $collection;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Remove collection
-//     *
-//     * @param \AppBundle\Entity\Collection $collection
-//     */
-//    public function removeCollection(\AppBundle\Entity\Collection $collection)
-//    {
-//        $this->collection->removeElement($collection);
-//    }
-//
-//    /**
-//     * Get collection
-//     *
-//     * @return \Doctrine\Common\Collections\Collection
-//     */
-//    public function getCollection()
-//    {
-//        return $this->collection;
-//    }
-//
-//    /**
-//     * Add nurl
-//     *
-//     * @param \AppBundle\Entity\Nurl $nurl
-//     *
-//     * @return User
-//     */
-//    public function addNurl(\AppBundle\Entity\Nurl $nurl)
-//    {
-//        $this->nurl[] = $nurl;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Remove nurl
-//     *
-//     * @param \AppBundle\Entity\Nurl $nurl
-//     */
-//    public function removeNurl(\AppBundle\Entity\Nurl $nurl)
-//    {
-//        $this->nurl->removeElement($nurl);
-//    }
-//
-//    /**
-//     * Get nurl
-//     *
-//     * @return \Doctrine\Common\Collections\Collection
-//     */
-//    public function getNurl()
-//    {
-//        return $this->nurl;
-//    }
+    /**
+     * Get nurl
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNurl()
+    {
+        return $this->nurl;
+    }
 }

@@ -74,17 +74,6 @@ class Nurl
      */
     private $user;
 
-    /**
-     * @var \AppBundle\Entity\Collection  $collection
-     *
-     * @ORM\ManyToOne(targetEntity="Collection", inversedBy="nurl")
-     *
-     * @ORM\JoinColumn(name="collection_id", referencedColumnName="id")
-     *
-     */
-    private $collection;
-
-
 
     /**
      * @var \AppBundle\Entity\Tag  $tag
@@ -218,100 +207,12 @@ class Nurl
         return $this->user;
     }
 
-//    /**
-//     * Set collection
-//     *
-//     * @param \AppBundle\Entity\Collection $collection
-//     *
-//     * @return Nurl
-//     */
-//    public function setCollection(\AppBundle\Entity\Collection $collection = null)
-//    {
-//        $this->collection = $collection;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get collection
-//     *
-//     * @return \AppBundle\Entity\Collection
-//     */
-//    public function getCollection()
-//    {
-//        return $this->collection;
-//    }
-//    /**
-//     * Constructor
-//     */
-//    public function __construct()
-//    {
-//        $this->tag = new \Doctrine\Common\Collections\ArrayCollection();
-//    }
-//
-//    /**
-//     * Add tag
-//     *
-//     * @param \AppBundle\Entity\Tag $tag
-//     *
-//     * @return Nurl
-//     */
-//    public function addTag(\AppBundle\Entity\Tag $tag)
-//    {
-//        $this->tag[] = $tag;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Remove tag
-//     *
-//     * @param \AppBundle\Entity\Tag $tag
-//     */
-//    public function removeTag(\AppBundle\Entity\Tag $tag)
-//    {
-//        $this->tag->removeElement($tag);
-//    }
-//
-//    /**
-//     * Get tag
-//     *
-//     * @return \Doctrine\Common\Collections\Collection
-//     */
-//    public function getTag()
-//    {
-//        return $this->tag;
-//    }
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->tag = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Set collection
-     *
-     * @param \AppBundle\Entity\Collection $collection
-     *
-     * @return Nurl
-     */
-    public function setCollection(\AppBundle\Entity\Collection $collection = null)
-    {
-        $this->collection = $collection;
-
-        return $this;
-    }
-
-    /**
-     * Get collection
-     *
-     * @return \AppBundle\Entity\Collection
-     */
-    public function getCollection()
-    {
-        return $this->collection;
     }
 
     /**

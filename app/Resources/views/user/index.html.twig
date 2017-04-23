@@ -16,12 +16,12 @@
             </tr>
         </thead>
         <tbody>
-        {#{% for user in users %}#}
+        {% for user in users %}
             <tr>
                 <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.username }}</td>
-                <td>{{ user.plainPassword }}</td>
+                <td>{{ user.password }}</td>
                 <td>{% if user.isActive %}Yes{% else %}No{% endif %}</td>
                 <td>{{ user.roles }}</td>
                 <td>
@@ -35,7 +35,7 @@
                     </ul>
                 </td>
             </tr>
-        {#{% endfor %}#}
+        {% endfor %}
         </tbody>
     </table>
 
