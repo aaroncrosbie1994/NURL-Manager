@@ -44,6 +44,7 @@ class TagController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $tag->setApproved(false);
             $em->persist($tag);
             $em->flush();
 

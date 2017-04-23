@@ -2,37 +2,82 @@
 
 {% block body %}
     <h1>List of Tags</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Tag</th>
-            <th>Approved</th>
-            <th>Upvote</th>
-            <th>Downvote</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for tag in tags %}
-            <tr>
-                <td><a href="{{ path('tag_show', { 'id': tag.id }) }}">{{ tag.id }}</a></td>
-                <td>{{ tag.tag }}</td>
-                <td>{% if tag.approved %}Yes{% else %}No{% endif %}</td>
-                <td>{{ tag.upvote }}</td>
-                <td>{{ tag.downvote }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('tag_show', { 'id': tag.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('tag_edit', { 'id': tag.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="adminList">
+        <div class="left">
+            <table>
+                <caption>Approved</caption>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tag</th>
+                    <th>Approved</th>
+                    <th>Upvote</th>
+                    <th>Downvote</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tag in tags %}
+                    {% if tag.approved %}
+                        <tr>
+                            <td><a href="{{ path('tag_show', { 'id': tag.id }) }}">{{ tag.id }}</a></td>
+                            <td>{{ tag.tag }}</td>
+                            <td>{% if tag.approved %}Yes{% else %}No{% endif %}</td>
+                            <td>{{ tag.upvote }}</td>
+                            <td>{{ tag.downvote }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('tag_show', { 'id': tag.id }) }}">show</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('tag_edit', { 'id': tag.id }) }}">edit</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="left">
+            <table>
+                <caption>Not approved</caption>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tag</th>
+                    <th>Approved</th>
+                    <th>Upvote</th>
+                    <th>Downvote</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tag in tags %}
+                    {% if not tag.approved %}
+                        <tr>
+                            <td><a href="{{ path('tag_show', { 'id': tag.id }) }}">{{ tag.id }}</a></td>
+                            <td>{{ tag.tag }}</td>
+                            <td>{% if tag.approved %}Yes{% else %}No{% endif %}</td>
+                            <td>{{ tag.upvote }}</td>
+                            <td>{{ tag.downvote }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('tag_show', { 'id': tag.id }) }}">show</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('tag_edit', { 'id': tag.id }) }}">edit</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

@@ -44,3 +44,26 @@ nav a:hover{
 p{
     text-align: center;
 }
+
+.adminList{
+    display: flex;
+}
+
+table,th{
+    border-style: solid;
+    border-collapse: collapse;
+    background-color: darkgray;
+}
+table{
+    margin-left:.5rem;
+    margin-right:.5rem;
+    text-align: center;
+}
+td{
+    border-bottom: solid;
+    background-color: aliceblue;
+}
+
+caption{
+    font-weight: bold;
+}
