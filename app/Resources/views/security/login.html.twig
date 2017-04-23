@@ -12,12 +12,13 @@
                     </div>
                 {% endif %}
                 {{ form_start(form) }}
-                    {{ form_row(form._username) }}
-                    {{ form_row(form._email) }}
-                    {{ form_row(form._password) }}
+                    {{ form_row(form.username) }}
+                    {{ form_row(form.plainPassword) }}
                     <button type="submit">Login</button>
                 {{ form_end(form) }}
             </div>
+            <h2>Not a member?</h2>
+            <a href="{{ path('user_registration') }}"><button id="regButton">Register!</button></a>
         </div>
     </div>
 

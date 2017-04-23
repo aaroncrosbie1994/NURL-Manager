@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class LoginForm extends AbstractType
+class RegistrationForm extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -19,8 +19,9 @@ class LoginForm extends AbstractType
     {
         $builder
             ->add('username', TextType::class)
+            ->add('email', EmailType::class)
             ->add('plainPassword', PasswordType::class)
-            ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
